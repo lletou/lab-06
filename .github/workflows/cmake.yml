@@ -1,0 +1,74 @@
+name: CMake
+
+on:
+  push:
+    tags: "*"
+
+env:
+  BUILD_TYPE: Release
+jobs:
+  build:
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run:
+          cmake -H. -B_build -DCPACK_GENERATOR="TGZ" && cmake --build _build --target package &&
+          cd _build && cpack -G "DEB" &&
+          cpack -G "RPM" &&
+          mkdir ../artifacts &&
+          mv *.tar.gz ../artifacts/ &&
+          mv *.deb ../artifacts/ &&
+          mv *.rpm ../artifacts/
+
+      # - name: Get the version
+      #   id: get_version
+      #   run: echo ::set-output name=VERSION::${GITHUB_REF#refs/*/}
+
+      - name: Publish
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: artifacts/
+
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: upload tar artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/lab06.tar.gz
+          asset_name: lab06.tar.gz
+          asset_content_type: application/gzip
+
+      - name: upload rpm artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/lab06.rpm
+          asset_name: lab06.rpm
+          asset_content_type: application/gzip
+
+      - name: upload deb artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/lab06.deb
+          asset_name: lab06.deb
+          asset_content_type: application/gzip
