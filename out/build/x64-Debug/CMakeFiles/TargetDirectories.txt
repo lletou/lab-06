@@ -1,0 +1,11 @@
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/formatter_lib.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/package.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/formatter_ex_lib.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/solver_lib.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/list_install_components.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/solver.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/package_source.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/install/local.dir
+C:/Users/User/Desktop/tp/lab-06/out/build/x64-Debug/CMakeFiles/install.dir
